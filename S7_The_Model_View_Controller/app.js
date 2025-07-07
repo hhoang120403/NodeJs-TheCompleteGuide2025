@@ -3,6 +3,7 @@ const path = require('path');
 const express = require('express');
 
 const { get404 } = require('./controllers/error');
+const db = require('./util/database');
 
 const app = express();
 
@@ -29,6 +30,14 @@ app.set('views', 'views');
 
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
+
+db.execute('SELECT * FROM products')
+  .then((result) => {
+    console.log(result[0]);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 // app.use((req, res, next) => {
 //   console.log('In the middleware!');
