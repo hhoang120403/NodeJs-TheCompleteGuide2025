@@ -17,10 +17,10 @@ router.get('/add-product', getAddProduct);
 // /admin/products => GET
 router.get('/products', getProducts);
 
-// /admin/add-product => POST
+// // /admin/add-product => POST
 router.post('/add-product', postAddProduct);
 
-// /admin/edit-product => GET
+// // /admin/edit-product => GET
 router.get('/edit-product/:productId', getEditProduct);
 
 router.post('/edit-product', postEditProduct);
