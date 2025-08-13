@@ -73,5 +73,11 @@ mongoose
   .connect(
     `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@cluster0.tuxfxmj.mongodb.net/postdb?retryWrites=true&w=majority&appName=Cluster0`
   )
-  .then((result) => app.listen(8080))
+  .then((result) => {
+    const server = app.listen(8080);
+    const io = require('./socket').init(server);
+    io.on('connection', (socket) => {
+      console.log('Client connected');
+    });
+  })
   .catch((err) => console.log(err));
